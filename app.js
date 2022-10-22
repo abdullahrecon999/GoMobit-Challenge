@@ -1,13 +1,46 @@
-var express = require('express');
+var createError = require("http-errors");
+var express = require("express");
+var cookieParser = require("cookie-parser");
+const dotenv = require('dotenv').config();
+var logger = require("morgan");
+var mongoose = require("mongoose");
+const PORT = process.env.PORT || 8081;
+
+const connection = mongoose
+	.connect("mongodb://localhost:27017/webapp", {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	})
+	.then((db) => {
+			console.log("[+] Database Connected");
+		}, (err) => {
+			console.log(err);
+		}
+	);
+
+var indexRouter = require("./routes/index");
+var usersRouter = require("./routes/users");
+
 var app = express();
 
-app.get('/', function (req, res) {
-   res.send('Hello World');
-})
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
-var server = app.listen(8081, function () {
-   var host = server.address().address
-   var port = server.address().port
-   
-   console.log("Example app listening at http://%s:%s", host, port)
-})
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+	next(createError(404));
+});
+
+// error handler
+app.use(function (err, req, res, next) {
+	res.send(err);
+});
+
+app.listen(PORT, () => {
+    console.log('[+] Server Started on ' + PORT);
+});
