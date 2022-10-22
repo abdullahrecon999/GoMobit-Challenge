@@ -15,6 +15,10 @@ var userSchema = new schema({
         type: String,
         required: true
     },
+    age:{
+        type: Number,
+        required: true
+    },
     isDeleted:{
         type: Boolean,
     }

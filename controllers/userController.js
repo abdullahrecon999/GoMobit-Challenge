@@ -22,6 +22,7 @@ module.exports = {
     }
   }, 
   createUser: async (req, res, next) => {
+    console.log("User called", req.body);
     const result = await User.findOne({ email: req.body.email });
     
     if(result == null){

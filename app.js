@@ -3,6 +3,7 @@ var express = require("express");
 var cookieParser = require("cookie-parser");
 const dotenv = require('dotenv').config();
 var logger = require("morgan");
+const cors = require('cors');
 var mongoose = require("mongoose");
 const PORT = process.env.PORT || 8081;
 
@@ -23,10 +24,13 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
+app.use(cors());
+
 app.use(logger("dev"));
+app.use(express.urlencoded({
+	extended: true
+}));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
