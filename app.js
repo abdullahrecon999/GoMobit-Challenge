@@ -7,7 +7,7 @@ var mongoose = require("mongoose");
 const PORT = process.env.PORT || 8081;
 
 const connection = mongoose
-	.connect("mongodb://localhost:27017/webapp", {
+	.connect(process.env.MONGODB_URL, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})
