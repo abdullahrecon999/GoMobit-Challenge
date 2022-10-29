@@ -30,7 +30,7 @@ export default function NewUser() {
        });
        
        let reqOptions = {
-         url: "localhost:8081/users/AddUser",
+         url: "http://3.82.230.24:8081/users/AddUser",
          method: "POST",
          headers: headersList,
          data: bodyContent,

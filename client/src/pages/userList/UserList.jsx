@@ -19,7 +19,7 @@ function useIsMounted() {
 
 const getData = async () => {
     
-  return await fetch("http://127.0.0.1:8081/users/GetUsers", {method:'GET'})
+  return await fetch("http://3.82.230.24:8081/users/GetUsers", {method:'GET'})
     .then(response => response.json())
     .then(result => {
       console.log(result)
