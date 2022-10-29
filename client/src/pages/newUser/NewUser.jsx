@@ -30,7 +30,7 @@ export default function NewUser() {
        });
        
        let reqOptions = {
-         url: "http://127.0.0.1:8081/users/AddUser",
+         url: "localhost:8081/users/AddUser",
          method: "POST",
          headers: headersList,
          data: bodyContent,
@@ -40,7 +40,7 @@ export default function NewUser() {
         alert('User created Successfully')
         // redirect
         window.location.href = '/users'
-      }).catch((err)=>alert(err.response.status + " User Already Exists"));
+      }).catch((err)=>alert(err + " User Already Exists"));
   }  
 
   return (

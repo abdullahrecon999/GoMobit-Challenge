@@ -1,5 +1,6 @@
 var createError = require("http-errors");
 var express = require("express");
+const path = require('path');
 var cookieParser = require("cookie-parser");
 const dotenv = require('dotenv').config();
 var logger = require("morgan");
@@ -24,6 +25,9 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
+// Have Node serve the files for our built React app
+//app.use(express.static(path.resolve(__dirname, '/client/build')));
+
 app.use(cors());
 
 app.use(logger("dev"));
@@ -32,8 +36,14 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
-app.use("/", indexRouter);
+app.use("/index", indexRouter);
 app.use("/users", usersRouter);
+
+const root = require('path').join(__dirname, 'client', 'build')
+app.use(express.static(root));
+app.get("*", (req, res) => {
+    res.sendFile('index.html', { root });
+})
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
