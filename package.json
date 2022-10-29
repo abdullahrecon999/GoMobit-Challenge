@@ -4,6 +4,7 @@
   "description": "Code_A_Thon challenge project",
   "main": "index.js",
   "scripts": {
+    "prod": "pm2 start app.js",
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
