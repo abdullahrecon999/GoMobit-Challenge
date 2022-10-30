@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "prod": "pm2 start app.js",
+    "build":"ENVIROMENT=$ENVIROMENT webpack",
+    "prod-build": "ENVIRONMENT='production' gulp",
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,12 +16,21 @@
     "body-parser": "^1.20.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "delete": "^1.1.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "gulp": "^4.0.2",
     "mongodb": "^4.11.0",
     "mongoose": "^6.6.7",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "webpack": "^5.74.0"
+  },
+  "devDependencies": {
+    "del": "^7.0.0",
+    "fancy-log": "^2.0.0",
+    "gulp-zip": "^5.1.0",
+    "webpack-stream": "^7.0.0"
   }
 }

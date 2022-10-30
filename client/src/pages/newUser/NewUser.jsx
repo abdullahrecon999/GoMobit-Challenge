@@ -30,7 +30,7 @@ export default function NewUser() {
        });
        
        let reqOptions = {
-         url: "http://3.82.230.24:8081/users/AddUser",
+         url: "/users/AddUser",
          method: "POST",
          headers: headersList,
          data: bodyContent,
